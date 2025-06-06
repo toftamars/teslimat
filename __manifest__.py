@@ -22,7 +22,6 @@ Teslimat Yönetimi Modülü
         'contacts',
         'sms',
         'fleet',
-        'web_google_maps',
     ],
     'data': [
         'security/delivery_security.xml',
@@ -34,7 +33,7 @@ Teslimat Yönetimi Modülü
         'views/delivery_report_views.xml',
         'views/stock_picking_views.xml',
         'views/delivery_menus.xml',
-        'wizard/delivery_wizard_views.xml',
+        'wizard/vehicle_selection_wizard_views.xml',
     ],
     'demo': [],
     'installable': True,
