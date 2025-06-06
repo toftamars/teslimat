@@ -17,8 +17,8 @@ Teslimat Yönetimi Modülü
     'author': 'Your Company',
     'website': 'https://www.yourcompany.com',
     'depends': [
-        'stock',
         'base',
+        'stock',
         'contacts',
         'sms',
         'fleet',
@@ -51,4 +51,5 @@ Teslimat Yönetimi Modülü
     },
     'images': ['static/description/banner.png'],
     'sequence': 1,
+    'post_init_hook': 'post_init_hook',
 }
