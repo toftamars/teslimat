@@ -3,6 +3,7 @@
     <!-- Ana Menü -->
     <menuitem id="menu_delivery_root"
               name="Teslimat Yönetimi"
+              web_icon="teslimat,static/description/icon.png"
               sequence="10"/>
 
     <!-- Teslimat Belgeleri Menüsü -->
@@ -12,9 +13,24 @@
               action="action_delivery_document"
               sequence="10"/>
 
+    <!-- Teslimat Planlaması Menüsü -->
+    <menuitem id="menu_delivery_planning"
+              name="Teslimat Planlaması"
+              parent="menu_delivery_root"
+              action="action_delivery_planning"
+              sequence="20"/>
+
+    <!-- Rotalar Menüsü -->
+    <menuitem id="menu_delivery_route"
+              name="Rotalar"
+              parent="menu_delivery_root"
+              action="action_delivery_route"
+              sequence="30"/>
+
     <!-- Raporlar Menüsü -->
     <menuitem id="menu_delivery_reporting"
               name="Raporlar"
               parent="menu_delivery_root"
+              action="action_delivery_report"
               sequence="99"/>
 </odoo> 

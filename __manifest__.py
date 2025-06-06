@@ -50,5 +50,6 @@ Teslimat Yönetimi Modülü
         ],
     },
     'images': ['static/description/banner.png'],
+    'icon': '/teslimat/static/description/icon.png',
     'sequence': 1,
 }
