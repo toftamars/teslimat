@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_delivery_document_user,delivery.document.user,model_delivery_document,group_delivery_user,1,1,1,0
+access_delivery_document_manager,delivery.document.manager,model_delivery_document,group_delivery_manager,1,1,1,1
+access_delivery_planning_user,delivery.planning.user,model_delivery_planning,group_delivery_user,1,1,1,0
+access_delivery_planning_manager,delivery.planning.manager,model_delivery_planning,group_delivery_manager,1,1,1,1
+access_delivery_district_day_user,delivery.district.day.user,model_delivery_district_day,group_delivery_user,1,0,0,0
+access_delivery_district_day_manager,delivery.district.day.manager,model_delivery_district_day,group_delivery_manager,1,1,1,1 

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Teslimat Belgesi Sıra Numarası -->
+        <record id="seq_delivery_document" model="ir.sequence">
+            <field name="name">Teslimat Belgesi</field>
+            <field name="code">delivery.document</field>
+            <field name="prefix">TES/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Varsayılan Teslimat Planlama -->
+        <record id="default_delivery_planning" model="delivery.planning">
+            <field name="name">İstanbul Teslimat Günleri</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Anadolu Yakası İlçe-Gün Eşleştirmeleri -->
+        <!-- Pazartesi -->
+        <record id="district_maltepe_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Maltepe</field>
+            <field name="day">monday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_kartal_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kartal</field>
+            <field name="day">monday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_pendik_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Pendik</field>
+            <field name="day">monday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_tuzla_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Tuzla</field>
+            <field name="day">monday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Salı -->
+        <record id="district_uskudar_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Üsküdar</field>
+            <field name="day">tuesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_kadikoy_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kadıköy</field>
+            <field name="day">tuesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_atasehir_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ataşehir</field>
+            <field name="day">tuesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_umraniye_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ümraniye</field>
+            <field name="day">tuesday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Çarşamba -->
+        <record id="district_uskudar_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Üsküdar</field>
+            <field name="day">wednesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_kadikoy_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kadıköy</field>
+            <field name="day">wednesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_atasehir_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ataşehir</field>
+            <field name="day">wednesday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_umraniye_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ümraniye</field>
+            <field name="day">wednesday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Perşembe -->
+        <record id="district_uskudar_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Üsküdar</field>
+            <field name="day">thursday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_kadikoy_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kadıköy</field>
+            <field name="day">thursday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_atasehir_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ataşehir</field>
+            <field name="day">thursday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_umraniye_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Ümraniye</field>
+            <field name="day">thursday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Cuma -->
+        <record id="district_maltepe_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Maltepe</field>
+            <field name="day">friday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_kartal_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kartal</field>
+            <field name="day">friday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_pendik_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Pendik</field>
+            <field name="day">friday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_sultanbeyli_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Sultanbeyli</field>
+            <field name="day">friday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Cumartesi -->
+        <record id="district_sancaktepe_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Sancaktepe</field>
+            <field name="day">saturday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_cekmekoy_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Çekmeköy</field>
+            <field name="day">saturday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_beykoz_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beykoz</field>
+            <field name="day">saturday</field>
+            <field name="region">anadolu</field>
+        </record>
+        <record id="district_sile_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Şile</field>
+            <field name="day">saturday</field>
+            <field name="region">anadolu</field>
+        </record>
+
+        <!-- Avrupa Yakası İlçe-Gün Eşleştirmeleri -->
+        <!-- Pazartesi -->
+        <record id="district_beyoglu_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beyoğlu</field>
+            <field name="day">monday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_sisli_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Şişli</field>
+            <field name="day">monday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_besiktas_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beşiktaş</field>
+            <field name="day">monday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_kagithane_monday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kağıthane</field>
+            <field name="day">monday</field>
+            <field name="region">avrupa</field>
+        </record>
+
+        <!-- Salı -->
+        <record id="district_sariyer_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Sarıyer</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_bakirkoy_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Bakırköy</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_bahcelievler_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Bahçelievler</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_gungoren_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Güngören</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_esenler_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Esenler</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_bagcilar_tuesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Bağcılar</field>
+            <field name="day">tuesday</field>
+            <field name="region">avrupa</field>
+        </record>
+
+        <!-- Çarşamba -->
+        <record id="district_beyoglu_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beyoğlu</field>
+            <field name="day">wednesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_sisli_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Şişli</field>
+            <field name="day">wednesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_besiktas_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beşiktaş</field>
+            <field name="day">wednesday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_kagithane_wednesday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Kağıthane</field>
+            <field name="day">wednesday</field>
+            <field name="region">avrupa</field>
+        </record>
+
+        <!-- Perşembe -->
+        <record id="district_eyupsultan_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Eyüpsultan</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_gaziosmanpasa_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Gaziosmanpaşa</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_kucukcekmece_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Küçükçekmece</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_avcilar_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Avcılar</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_basaksehir_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Başakşehir</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_sultangazi_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Sultangazi</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_arnavutkoy_thursday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Arnavutköy</field>
+            <field name="day">thursday</field>
+            <field name="region">avrupa</field>
+        </record>
+
+        <!-- Cuma -->
+        <record id="district_fatih_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Fatih</field>
+            <field name="day">friday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_zeytinburnu_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Zeytinburnu</field>
+            <field name="day">friday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_bayrampasa_friday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Bayrampaşa</field>
+            <field name="day">friday</field>
+            <field name="region">avrupa</field>
+        </record>
+
+        <!-- Cumartesi -->
+        <record id="district_esenyurt_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Esenyurt</field>
+            <field name="day">saturday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_beylikduzu_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Beylikdüzü</field>
+            <field name="day">saturday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_silivri_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Silivri</field>
+            <field name="day">saturday</field>
+            <field name="region">avrupa</field>
+        </record>
+        <record id="district_catalca_saturday" model="delivery.district.day">
+            <field name="planning_id" ref="default_delivery_planning"/>
+            <field name="district">Çatalca</field>
+            <field name="day">saturday</field>
+            <field name="region">avrupa</field>
+        </record>
+    </data>
+</odoo>

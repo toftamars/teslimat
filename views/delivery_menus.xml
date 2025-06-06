@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ana Menü -->
+    <menuitem id="menu_delivery_root"
+              name="Teslimat Yönetimi"
+              sequence="10"/>
+
+    <!-- Teslimat Belgeleri Menüsü -->
+    <menuitem id="menu_delivery_document"
+              name="Teslimat Belgeleri"
+              parent="menu_delivery_root"
+              action="action_delivery_document"
+              sequence="10"/>
+
+    <!-- Raporlar Menüsü -->
+    <menuitem id="menu_delivery_reporting"
+              name="Raporlar"
+              parent="menu_delivery_root"
+              sequence="99"/>
+</odoo> 

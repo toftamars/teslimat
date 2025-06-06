@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Teslimat Belgesi Tree View -->
+        <record id="view_delivery_document_tree" model="ir.ui.view">
+            <field name="name">delivery.document.tree</field>
+            <field name="model">delivery.document</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state=='draft'" decoration-success="state=='ready'" 
+                      decoration-warning="state=='on_road'" decoration-muted="state=='cancelled'">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="district"/>
+                    <field name="delivery_date"/>
+                    <field name="vehicle_type"/>
+                    <field name="state" widget="badge"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Teslimat Belgesi Form View -->
+        <record id="view_delivery_document_form" model="ir.ui.view">
+            <field name="name">delivery.document.form</field>
+            <field name="model">delivery.document</field>
+            <field name="arch" type="xml">
+                <form string="Teslimat Belgesi">
+                    <header>
+                        <button name="action_confirm" type="object" string="Onayla" 
+                                class="oe_highlight" states="draft"/>
+                        <button name="action_on_road" type="object" string="Yolda" 
+                                class="oe_highlight" states="ready"/>
+                        <button name="action_delivered" type="object" string="Tamamla" 
+                                class="oe_highlight" states="on_road"/>
+                        <button name="action_cancel" type="object" string="İptal" 
+                                states="draft,ready"/>
+                        <button name="action_reset_to_draft" type="object" string="Taslağa Dönüştür" 
+                                states="cancelled"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,on_road,delivered"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_picking" type="object" 
+                                    class="oe_stat_button" icon="fa-truck">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Transfer</span>
+                                    <span class="o_stat_text">Belgesi</span>
+                                </div>
+                            </button>
+                        </div>
+                        
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="picking_id" options="{'no_create': True}" 
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_id" readonly="1"/>
+                                <field name="delivery_address" readonly="1"/>
+                                <field name="district" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="delivery_date" 
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('state', '!=', 'draft')]}"/>
+                                <field name="vehicle_type" 
+                                       attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('state', '!=', 'draft')]}"/>
+                                <field name="partner_phone" readonly="1"/>
+                                <field name="partner_mobile" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Ürün Bilgileri">
+                                <field name="move_lines" readonly="1">
+                                    <tree>
+                                        <field name="product_id"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="product_uom"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Rota ve Harita">
+                                <group>
+                                    <field name="route_info" placeholder="Rota bilgilerini buraya giriniz..."/>
+                                    <field name="map_url" widget="url" placeholder="https://maps.google.com/..."/>
+                                </group>
+                            </page>
+                            <page string="SMS Durumu">
+                                <group>
+                                    <field name="sms_sent_on_road" readonly="1"/>
+                                    <field name="sms_sent_delivered" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Teslimat Belgesi Search View -->
+        <record id="view_delivery_document_search" model="ir.ui.view">
+            <field name="name">delivery.document.search</field>
+            <field name="model">delivery.document</field>
+            <field name="arch" type="xml">
+                <search string="Teslimat Belgesi Arama">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="district"/>
+                    <field name="delivery_date"/>
+                    <field name="vehicle_type"/>
+                    <filter string="Taslak" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Hazır" name="ready" domain="[('state', '=', 'ready')]"/>
+                    <filter string="Yolda" name="on_road" domain="[('state', '=', 'on_road')]"/>
+                    <filter string="Teslim Edildi" name="delivered" domain="[('state', '=', 'delivered')]"/>
+                    <separator/>
+                    <filter string="Bugün" name="today" domain="[('delivery_date', '=', context_today())]"/>
+                    <filter string="Bu Hafta" name="this_week" 
+                            domain="[('delivery_date', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d')), 
+                                   ('delivery_date', '&lt;=', (context_today() + datetime.timedelta(days=6-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Grupla">
+                        <filter name="group_state" string="Durum" context="{'group_by': 'state'}"/>
+                        <filter name="group_date" string="Teslimat Tarihi" context="{'group_by': 'delivery_date'}"/>
+                        <filter name="group_vehicle" string="Araç" context="{'group_by': 'vehicle_type'}"/>
+                        <filter name="group_district" string="İlçe" context="{'group_by': 'district'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>

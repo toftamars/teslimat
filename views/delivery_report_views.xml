@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Rapor Tree View -->
+        <record id="view_delivery_report_tree" model="ir.ui.view">
+            <field name="name">delivery.report.tree</field>
+            <field name="model">delivery.report</field>
+            <field name="arch" type="xml">
+                <tree string="Teslimat Raporu" decoration-success="success_rate >= 90" decoration-warning="success_rate >= 70" decoration-danger="success_rate < 70">
+                    <field name="date"/>
+                    <field name="district"/>
+                    <field name="vehicle_type"/>
+                    <field name="delivery_count"/>
+                    <field name="total_distance"/>
+                    <field name="total_duration"/>
+                    <field name="success_rate" widget="percentage"/>
+                    <field name="avg_delivery_time"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Rapor Graph View -->
+        <record id="view_delivery_report_graph" model="ir.ui.view">
+            <field name="name">delivery.report.graph</field>
+            <field name="model">delivery.report</field>
+            <field name="arch" type="xml">
+                <graph string="Teslimat Raporu" type="bar">
+                    <field name="date"/>
+                    <field name="delivery_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Rapor Pivot View -->
+        <record id="view_delivery_report_pivot" model="ir.ui.view">
+            <field name="name">delivery.report.pivot</field>
+            <field name="model">delivery.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Teslimat Raporu">
+                    <field name="date" type="row"/>
+                    <field name="district" type="row"/>
+                    <field name="vehicle_type" type="col"/>
+                    <field name="delivery_count" type="measure"/>
+                    <field name="total_distance" type="measure"/>
+                    <field name="success_rate" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Rapor Search View -->
+        <record id="view_delivery_report_search" model="ir.ui.view">
+            <field name="name">delivery.report.search</field>
+            <field name="model">delivery.report</field>
+            <field name="arch" type="xml">
+                <search string="Rapor Arama">
+                    <field name="date"/>
+                    <field name="district"/>
+                    <field name="vehicle_type"/>
+                    <filter string="Bu Ay" name="this_month" 
+                            domain="[('date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                   ('date', '&lt;=', (context_today() + relativedelta(months=1, day=1, days=-1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Bu Hafta" name="this_week"
+                            domain="[('date', '&gt;=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d')),
+                                   ('date', '&lt;=', (context_today() + datetime.timedelta(days=6-context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Grupla">
+                        <filter name="group_date" string="Tarih" context="{'group_by': 'date'}"/>
+                        <filter name="group_district" string="İlçe" context="{'group_by': 'district'}"/>
+                        <filter name="group_vehicle" string="Araç" context="{'group_by': 'vehicle_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Rapor Action -->
+        <record id="action_delivery_report" model="ir.actions.act_window">
+            <field name="name">Teslimat Raporu</field>
+            <field name="res_model">delivery.report</field>
+            <field name="view_mode">tree,graph,pivot</field>
+            <field name="search_view_id" ref="view_delivery_report_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Henüz rapor verisi yok
+                </p>
+            </field>
+        </record>
+
+        <!-- Rapor Menü -->
+        <menuitem id="menu_delivery_report"
+                  name="Raporlar"
+                  parent="menu_delivery_root"
+                  action="action_delivery_report"
+                  sequence="99"/>
+    </data>
+</odoo> 

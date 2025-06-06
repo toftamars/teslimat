@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Rota Tree View -->
+        <record id="view_delivery_route_tree" model="ir.ui.view">
+            <field name="name">delivery.route.tree</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state=='draft'" decoration-success="state=='optimized'"
+                      decoration-warning="state=='in_progress'" decoration-muted="state=='done'">
+                    <field name="name"/>
+                    <field name="planning_id"/>
+                    <field name="vehicle_type"/>
+                    <field name="total_distance"/>
+                    <field name="total_duration"/>
+                    <field name="state" widget="badge"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Rota Form View -->
+        <record id="view_delivery_route_form" model="ir.ui.view">
+            <field name="name">delivery.route.form</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <form string="Teslimat Rotası">
+                    <header>
+                        <button name="action_optimize_route" string="Rotayı Optimize Et" 
+                                type="object" class="oe_highlight" states="draft"/>
+                        <button name="action_start_route" string="Rotayı Başlat" 
+                                type="object" class="oe_highlight" states="optimized"/>
+                        <button name="action_complete_route" string="Rotayı Tamamla" 
+                                type="object" class="oe_highlight" states="in_progress"/>
+                        <button name="action_reset_to_draft" string="Taslağa Dönüştür" 
+                                states="optimized,in_progress"/>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="draft,optimized,in_progress,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="planning_id" options="{'no_create': True}"/>
+                                <field name="vehicle_type"/>
+                                <field name="start_location"/>
+                                <field name="end_location"/>
+                            </group>
+                            <group>
+                                <field name="total_distance"/>
+                                <field name="total_duration"/>
+                                <field name="api_key" password="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Optimize Edilmiş Rota">
+                                <field name="optimized_route" widget="ace" options="{'mode': 'json'}"/>
+                                <button name="get_route_map_url" string="Haritada Göster" 
+                                        type="object" class="btn btn-primary"/>
+                            </page>
+                            <page string="Ara Noktalar">
+                                <field name="waypoints" placeholder="Ara noktaları buraya giriniz..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Rota Search View -->
+        <record id="view_delivery_route_search" model="ir.ui.view">
+            <field name="name">delivery.route.search</field>
+            <field name="model">delivery.route</field>
+            <field name="arch" type="xml">
+                <search string="Rota Arama">
+                    <field name="name"/>
+                    <field name="planning_id"/>
+                    <field name="vehicle_type"/>
+                    <filter string="Taslak" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Optimize Edildi" name="optimized" domain="[('state', '=', 'optimized')]"/>
+                    <filter string="Devam Ediyor" name="in_progress" domain="[('state', '=', 'in_progress')]"/>
+                    <filter string="Tamamlandı" name="done" domain="[('state', '=', 'done')]"/>
+                    <group expand="0" string="Grupla">
+                        <filter name="group_state" string="Durum" context="{'group_by': 'state'}"/>
+                        <filter name="group_vehicle" string="Araç" context="{'group_by': 'vehicle_type'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Rota Action -->
+        <record id="action_delivery_route" model="ir.actions.act_window">
+            <field name="name">Teslimat Rotaları</field>
+            <field name="res_model">delivery.route</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_delivery_route_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Yeni bir rota oluşturun
+                </p>
+            </field>
+        </record>
+
+        <!-- Rota Menü -->
+        <menuitem id="menu_delivery_route"
+                  name="Rotalar"
+                  parent="menu_delivery_root"
+                  action="action_delivery_route"
+                  sequence="20"/>
+    </data>
+</odoo> 
