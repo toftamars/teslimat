@@ -43,4 +43,10 @@ Teslimat Yönetimi Modülü
     'external_dependencies': {
         'python': ['googlemaps'],
     },
+    'assets': {
+        'web.assets_backend': [
+            'teslimat/static/src/js/*.js',
+            'teslimat/static/src/css/*.css',
+        ],
+    },
 }
