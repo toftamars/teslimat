@@ -49,4 +49,6 @@ Teslimat Yönetimi Modülü
             'teslimat/static/src/css/*.css',
         ],
     },
+    'images': ['static/description/banner.png'],
+    'sequence': 1,
 }
