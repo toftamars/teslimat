@@ -1,7 +1,7 @@
 {
     'name': 'Teslimat Yönetimi',
     'version': '15.0.1.0.0',
-    'category': 'Inventory/Delivery',
+    'category': 'Operations/Delivery',
     'summary': 'Transfer belgelerinden otomatik teslimat belgesi oluşturma ve yönetimi',
     'description': """
 Teslimat Yönetimi Modülü
