@@ -26,7 +26,6 @@ Teslimat Yönetimi Modülü
     'data': [
         'security/delivery_security.xml',
         'security/ir.model.access.csv',
-        'data/delivery_data.xml',
         'views/delivery_document_views.xml',
         'views/delivery_planning_views.xml',
         'views/delivery_route_views.xml',
@@ -34,6 +33,7 @@ Teslimat Yönetimi Modülü
         'views/stock_picking_views.xml',
         'views/delivery_menus.xml',
         'wizard/vehicle_selection_wizard_views.xml',
+        'data/delivery_data.xml',
     ],
     'demo': [],
     'installable': True,
@@ -51,5 +51,4 @@ Teslimat Yönetimi Modülü
     },
     'images': ['static/description/banner.png'],
     'sequence': 1,
-    'post_init_hook': 'post_init_hook',
 }
