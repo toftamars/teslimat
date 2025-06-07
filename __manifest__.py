@@ -18,10 +18,13 @@ Teslimat Yönetimi Modülü
     'website': 'https://www.yourcompany.com',
     'depends': [
         'base',
+        'web',
+        'mail',
         'stock',
         'contacts',
         'sms',
         'fleet',
+        'report',
     ],
     'data': [
         'security/delivery_security.xml',
@@ -45,11 +48,11 @@ Teslimat Yönetimi Modülü
     },
     'assets': {
         'web.assets_backend': [
-            'teslimat/static/src/js/*.js',
-            'teslimat/static/src/css/*.css',
+            'static/src/js/*.js',
+            'static/src/css/*.css',
         ],
     },
     'images': ['static/description/banner.png'],
-    'icon': '/teslimat/static/description/icon.png',
+    'icon': 'static/description/icon.png',
     'sequence': 1,
 }
