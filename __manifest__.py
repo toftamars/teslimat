@@ -54,5 +54,5 @@ Teslimat Yönetimi Modülü
     },
     'images': ['static/description/banner.png'],
     'icon': 'static/description/icon.png',
-    'sequence': 1,
+    'sequence': 2,
 }
